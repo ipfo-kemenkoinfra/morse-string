@@ -195,6 +195,7 @@ textarea[readonly] {
 
 #wpm-value,
 #decoder-wpm-value,
+#freq-value,
 #threshold-value {
   color: var(--brass);
   font-weight: bold;
