@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morse String</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>MORSE STRING</h1>
+      <p class="subtitle">-- --- .-. ... .</p>
+    </header>
+
+    <main>
+      <section class="input-section">
+        <label for="text-input">ENTER YOUR MESSAGE</label>
+        <textarea id="text-input" maxlength="140" rows="3" placeholder="TYPE YOUR MESSAGE HERE..." spellcheck="false"></textarea>
+        <div class="input-footer">
+          <span id="error-msg" class="error" hidden></span>
+          <span id="char-counter" class="char-counter">0 / 140</span>
+        </div>
+      </section>
+
+      <section id="output-section" class="output-section" hidden>
+        <label>MORSE CODE OUTPUT</label>
+        <div class="morse-display">
+          <pre id="morse-output"></pre>
+          <button id="copy-btn" class="btn btn-small" title="Copy to clipboard">COPY</button>
+        </div>
+      </section>
+
+      <section class="controls-section">
+        <div class="wpm-control">
+          <label for="wpm-slider">SPEED: <span id="wpm-value">15</span> WPM</label>
+          <input type="range" id="wpm-slider" min="5" max="35" value="15" step="1">
+        </div>
+
+        <div class="playback-controls">
+          <button id="play-btn" class="btn btn-primary" disabled>&#9654; PLAY</button>
+          <button id="stop-btn" class="btn btn-danger" disabled>&#9632; STOP</button>
+          <button id="download-btn" class="btn btn-secondary" disabled>&#8615; DOWNLOAD MP3</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>A-Z &middot; 0-9 &middot; SPACES ONLY</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

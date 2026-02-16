@@ -1,0 +1,1 @@
+i want to write a simple web app with a single feature that receives a string (max 140 char) and outputs and of audio of the string translated into morse code. 
