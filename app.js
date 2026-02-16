@@ -50,6 +50,8 @@ const audioFileInput = document.getElementById('audio-file-input');
 const fileNameSpan = document.getElementById('file-name');
 const decoderWpmSlider = document.getElementById('decoder-wpm-slider');
 const decoderWpmValue = document.getElementById('decoder-wpm-value');
+const freqSlider = document.getElementById('freq-slider');
+const freqValue = document.getElementById('freq-value');
 const thresholdSlider = document.getElementById('threshold-slider');
 const thresholdValue = document.getElementById('threshold-value');
 const decodeBtn = document.getElementById('decode-btn');
@@ -497,9 +499,12 @@ decoderWpmSlider.addEventListener('input', () => {
   decoderWpmValue.textContent = decoderWpmSlider.value;
 });
 
+freqSlider.addEventListener('input', () => {
+  freqValue.textContent = freqSlider.value;
+});
+
 thresholdSlider.addEventListener('input', () => {
   thresholdValue.textContent = thresholdSlider.value;
-  // Re-render canvas if we have magnitudes
   if (lastMagnitudes) {
     drawVisualization(lastMagnitudes, parseInt(thresholdSlider.value) / 100);
   }
@@ -525,7 +530,7 @@ function goertzelMagnitude(samples, targetFreq, sampleRate) {
   return Math.sqrt(s1 * s1 + s2 * s2 - coeff * s1 * s2) / N;
 }
 
-function analyzeAudio(audioBuffer, windowMs) {
+function analyzeAudio(audioBuffer, windowMs, targetFreq) {
   // Mix to mono
   const numChannels = audioBuffer.numberOfChannels;
   const length = audioBuffer.length;
@@ -546,7 +551,7 @@ function analyzeAudio(audioBuffer, windowMs) {
   for (let w = 0; w < numWindows; w++) {
     const start = w * windowSize;
     const chunk = mono.subarray(start, start + windowSize);
-    magnitudes[w] = goertzelMagnitude(chunk, FREQ, sampleRate);
+    magnitudes[w] = goertzelMagnitude(chunk, targetFreq, sampleRate);
   }
 
   return magnitudes;
@@ -667,9 +672,10 @@ decodeBtn.addEventListener('click', () => {
 
   const windowMs = 10;
   const wpm = parseInt(decoderWpmSlider.value);
+  const targetFreq = parseInt(freqSlider.value);
   const thresholdPct = parseInt(thresholdSlider.value) / 100;
 
-  const magnitudes = analyzeAudio(decoderAudioBuffer, windowMs);
+  const magnitudes = analyzeAudio(decoderAudioBuffer, windowMs, targetFreq);
   lastMagnitudes = magnitudes;
 
   // Draw visualization
