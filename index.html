@@ -13,36 +13,79 @@
       <p class="subtitle">-- --- .-. ... .</p>
     </header>
 
+    <nav class="tab-bar">
+      <button class="tab-btn active" data-tab="translator">TRANSLATOR</button>
+      <button class="tab-btn" data-tab="decoder">AUDIO DECODER</button>
+    </nav>
+
     <main>
-      <section class="input-section">
-        <label for="text-input">ENTER YOUR MESSAGE</label>
-        <textarea id="text-input" maxlength="140" rows="3" placeholder="TYPE YOUR MESSAGE HERE..." spellcheck="false"></textarea>
-        <div class="input-footer">
-          <span id="error-msg" class="error" hidden></span>
-          <span id="char-counter" class="char-counter">0 / 140</span>
-        </div>
-      </section>
+      <!-- Translator Tab -->
+      <div id="tab-translator" class="tab-content">
+        <section class="input-section">
+          <label for="text-input">TEXT</label>
+          <textarea id="text-input" maxlength="140" rows="3" placeholder="TYPE YOUR MESSAGE HERE..." spellcheck="false"></textarea>
+          <div class="input-footer">
+            <span id="error-msg" class="error" hidden></span>
+            <span id="char-counter" class="char-counter">0 / 140</span>
+          </div>
+        </section>
 
-      <section id="output-section" class="output-section" hidden>
-        <label>MORSE CODE OUTPUT</label>
-        <div class="morse-display">
-          <pre id="morse-output"></pre>
-          <button id="copy-btn" class="btn btn-small" title="Copy to clipboard">COPY</button>
-        </div>
-      </section>
+        <div class="direction-indicator">&UpArrowDownArrow;</div>
 
-      <section class="controls-section">
-        <div class="wpm-control">
-          <label for="wpm-slider">SPEED: <span id="wpm-value">15</span> WPM</label>
-          <input type="range" id="wpm-slider" min="5" max="35" value="15" step="1">
-        </div>
+        <section class="input-section">
+          <label for="morse-input">MORSE CODE</label>
+          <textarea id="morse-input" rows="3" class="morse-textarea" placeholder="OR TYPE MORSE CODE HERE (.- / -...)" spellcheck="false"></textarea>
+          <div class="input-footer">
+            <span id="morse-error-msg" class="error" hidden></span>
+          </div>
+        </section>
 
-        <div class="playback-controls">
-          <button id="play-btn" class="btn btn-primary" disabled>&#9654; PLAY</button>
-          <button id="stop-btn" class="btn btn-danger" disabled>&#9632; STOP</button>
-          <button id="download-btn" class="btn btn-secondary" disabled>&#8615; DOWNLOAD MP3</button>
-        </div>
-      </section>
+        <section class="controls-section">
+          <div class="wpm-control">
+            <label for="wpm-slider">SPEED: <span id="wpm-value">15</span> WPM</label>
+            <input type="range" id="wpm-slider" min="5" max="35" value="15" step="1">
+          </div>
+
+          <div class="playback-controls">
+            <button id="play-btn" class="btn btn-primary" disabled>&#9654; PLAY</button>
+            <button id="stop-btn" class="btn btn-danger" disabled>&#9632; STOP</button>
+            <button id="download-btn" class="btn btn-secondary" disabled>&#8615; DOWNLOAD MP3</button>
+          </div>
+        </section>
+      </div>
+
+      <!-- Audio Decoder Tab -->
+      <div id="tab-decoder" class="tab-content" hidden>
+        <section class="upload-section">
+          <button id="upload-btn" class="btn btn-primary upload-btn">&#8613; UPLOAD AUDIO FILE</button>
+          <input type="file" id="audio-file-input" accept=".mp3,.wav,.ogg,.m4a" hidden>
+          <span id="file-name" class="file-name">NO FILE SELECTED</span>
+        </section>
+
+        <section class="decoder-controls">
+          <div class="wpm-control">
+            <label for="decoder-wpm-slider">EXPECTED SPEED: <span id="decoder-wpm-value">15</span> WPM</label>
+            <input type="range" id="decoder-wpm-slider" min="5" max="35" value="15" step="1">
+          </div>
+          <div class="wpm-control">
+            <label for="threshold-slider">THRESHOLD: <span id="threshold-value">50</span>%</label>
+            <input type="range" id="threshold-slider" min="10" max="90" value="50" step="1">
+          </div>
+          <button id="decode-btn" class="btn btn-primary" disabled>DECODE</button>
+        </section>
+
+        <section class="visualization-section" hidden>
+          <label>SIGNAL ANALYSIS</label>
+          <canvas id="decoder-canvas" width="536" height="120"></canvas>
+        </section>
+
+        <section class="decoder-output-section" hidden>
+          <label>DECODED MORSE</label>
+          <textarea id="decoded-morse" rows="2" class="morse-textarea" readonly></textarea>
+          <label style="margin-top: 0.75rem;">DECODED TEXT</label>
+          <textarea id="decoded-text" rows="2" readonly></textarea>
+        </section>
+      </div>
     </main>
 
     <footer>
