@@ -472,6 +472,11 @@ audioFileInput.addEventListener('change', async () => {
 
   fileNameSpan.textContent = file.name;
   decodeBtn.disabled = true;
+  vizSection.hidden = true;
+  decoderOutputSection.hidden = true;
+  decodedMorseArea.value = '';
+  decodedTextArea.value = '';
+  lastMagnitudes = null;
 
   try {
     const ctx = ensureAudioCtx();
