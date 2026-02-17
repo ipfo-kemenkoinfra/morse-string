@@ -115,6 +115,21 @@ label {
   margin-bottom: 0.5rem;
 }
 
+/* Label Row */
+.label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label-row label {
+  margin-bottom: 0;
+}
+
+.copy-btn {
+  margin-bottom: 0.5rem;
+}
+
 /* Input section */
 .input-section {
   margin-bottom: 1rem;

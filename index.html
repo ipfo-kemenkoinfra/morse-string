@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Morse String</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
   <div class="container">
@@ -22,7 +22,10 @@
       <!-- Translator Tab -->
       <div id="tab-translator" class="tab-content">
         <section class="input-section">
-          <label for="text-input">TEXT</label>
+          <div class="label-row">
+            <label for="text-input">TEXT</label>
+            <button id="copy-text-btn" class="btn btn-small copy-btn" title="Copy text to clipboard">COPY</button>
+          </div>
           <textarea id="text-input" maxlength="140" rows="3" placeholder="TYPE YOUR MESSAGE HERE..." spellcheck="false"></textarea>
           <div class="input-footer">
             <span id="error-msg" class="error" hidden></span>
@@ -33,7 +36,10 @@
         <div class="direction-indicator">&UpArrowDownArrow;</div>
 
         <section class="input-section">
-          <label for="morse-input">MORSE CODE</label>
+          <div class="label-row">
+            <label for="morse-input">MORSE CODE</label>
+            <button id="copy-morse-btn" class="btn btn-small copy-btn" title="Copy morse code to clipboard">COPY</button>
+          </div>
           <textarea id="morse-input" rows="3" class="morse-textarea" placeholder="OR TYPE MORSE CODE HERE (.- / -...)" spellcheck="false"></textarea>
           <div class="input-footer">
             <span id="morse-error-msg" class="error" hidden></span>
@@ -98,6 +104,6 @@
   </div>
 
   <script src="lame.min.js"></script>
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

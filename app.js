@@ -38,6 +38,8 @@ const wpmValue = document.getElementById('wpm-value');
 const playBtn = document.getElementById('play-btn');
 const stopBtn = document.getElementById('stop-btn');
 const downloadBtn = document.getElementById('download-btn');
+const copyTextBtn = document.getElementById('copy-text-btn');
+const copyMorseBtn = document.getElementById('copy-morse-btn');
 
 // DOM ELEMENTS — TABS
 const tabBtns = document.querySelectorAll('.tab-btn');
@@ -235,6 +237,26 @@ morseInput.addEventListener('input', () => {
 
   updateButtonStates();
   isUpdating = false;
+});
+
+// ============================================================
+// COPY TO CLIPBOARD
+// ============================================================
+
+function copyToClipboard(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const original = btn.textContent;
+    btn.textContent = 'COPIED!';
+    setTimeout(() => { btn.textContent = original; }, 1500);
+  });
+}
+
+copyTextBtn.addEventListener('click', () => {
+  copyToClipboard(textInput.value, copyTextBtn);
+});
+
+copyMorseBtn.addEventListener('click', () => {
+  copyToClipboard(morseInput.value, copyMorseBtn);
 });
 
 // ============================================================
